@@ -9,15 +9,15 @@ const app = express();
 dotenv.config();
 
 const corsOptions = {
-  origin: "*",
+  origin: "https://p-chat-kohl.vercel.app",
   methods: "GET, POST, OPTIONS, PATCH, DELETE",
   allowedHeaders: "Content-Type, Authorization",
 };
 
-app.options("*", cors(corsOptions));
+app.use(cors(corsOptions));
 
-app.use(express.json({limit: "30mb", extended: true}));
-app.use(express.urlencoded({limit: "30mb", extended: true}));
+app.use(express.json({ limit: "30mb", extended: true }));
+app.use(express.urlencoded({ limit: "30mb", extended: true }));
 
 app.use("/posts", postRoutes);
 app.use("/users", userRoutes);
