@@ -6,15 +6,10 @@ import userRoutes from "./routes/users.js";
 import dotenv from "dotenv";
 
 const app = express();
-dotenv.config(); 
+dotenv.config();
 
-const corsOptions = {
-  origin: "https://p-chat-kohl.vercel.app",
-  methods: "GET, POST, OPTIONS, PATCH, DELETE",
-  allowedHeaders: "Content-Type, Authorization",
-};
-
-app.use(cors(corsOptions));
+app.use(cors());
+app.options("*", cors());
 
 app.use(express.json({ limit: "30mb", extended: true }));
 app.use(express.urlencoded({ limit: "30mb", extended: true }));
@@ -34,3 +29,4 @@ mongoose
     app.listen(PORT, () => console.log(`Server running on port: ${PORT}`))
   )
   .catch((error) => console.log(error.message));
+
